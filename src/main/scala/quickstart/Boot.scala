@@ -5,15 +5,15 @@ import xitrum.handler.Server
 import xitrum.routing.Routes
 
 class Echo extends SockJsHandler {
-  def onOpen()                   { logger.debug("onOpen") }
-  def onClose()                  { logger.debug("onClose") }
-  def onMessage(message: String) { send(message) }
+  def onOpen(session: Map[String, Any]) { logger.debug("onOpen") }
+  def onClose()                         { logger.debug("onClose") }
+  def onMessage(message: String)        { send(message) }
 }
 
 class Close extends SockJsHandler {
-  def onOpen()                   { logger.debug("onOpen"); close() }
-  def onClose()                  { logger.debug("onClose") }
-  def onMessage(message: String) {}
+  def onOpen(session: Map[String, Any]) { logger.debug("onOpen"); close() }
+  def onClose()                         { logger.debug("onClose") }
+  def onMessage(message: String)        {}
 }
 
 object Boot {
