@@ -1,19 +1,19 @@
 package quickstart
 
-import xitrum.{Controller, SockJsHandler}
+import xitrum.{Action, SockJsHandler}
 import xitrum.handler.Server
 import xitrum.routing.Routes
 
 class Echo extends SockJsHandler {
-  def onOpen(controller: Controller) { logger.debug("onOpen") }
-  def onClose()                      { logger.debug("onClose") }
-  def onMessage(message: String)     { send(message) }
+  def onOpen(action: Action)     { logger.debug("onOpen") }
+  def onClose()                  { logger.debug("onClose") }
+  def onMessage(message: String) { send(message) }
 }
 
 class Close extends SockJsHandler {
-  def onOpen(controller: Controller) { logger.debug("onOpen"); close() }
-  def onClose()                      { logger.debug("onClose") }
-  def onMessage(message: String)     {}
+  def onOpen(action: Action)     { logger.debug("onOpen"); close() }
+  def onClose()                  { logger.debug("onClose") }
+  def onMessage(message: String) {}
 }
 
 object Boot {
