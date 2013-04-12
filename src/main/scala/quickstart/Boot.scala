@@ -1,27 +1,39 @@
 package quickstart
 
-import xitrum.{Action, SockJsHandler}
+import xitrum.{Action, SockJsActor, SockJsText}
+import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
 import xitrum.handler.Server
-import xitrum.routing.Routes
 
-class Echo extends SockJsHandler {
-  def onOpen(action: Action)     { logger.debug("onOpen") }
-  def onClose()                  { logger.debug("onClose") }
-  def onMessage(message: String) { send(message) }
+@SOCKJS("echo")
+class Echo extends SockJsActor {
+  def execute(action: Action) {
+    logger.debug("onOpen")
+    context.become {
+      case SockJsText(text) => respondSockJsText(text)
+    }
+  }
+
+  override def postStop() { logger.debug("onClose") }
 }
 
-class Close extends SockJsHandler {
-  def onOpen(action: Action)     { logger.debug("onOpen"); close() }
-  def onClose()                  { logger.debug("onClose") }
-  def onMessage(message: String) {}
+@SOCKJS("disabled_websocket_echo")
+@SockJsNoWebSocket
+class EchoNoWebSocket extends Echo
+
+@SOCKJS("cookie_needed_echo")
+@SockJsCookieNeeded
+class EchoCookieNeeded extends Echo
+
+@SOCKJS("close")
+class Close extends SockJsActor {
+  def execute(action: Action) {
+    logger.debug("onOpen");
+    respondSockJsClose()
+  }
+
+  override def postStop() { logger.debug("onClose") }
 }
 
 object Boot {
-  def main(args: Array[String]) {
-    Routes.sockJs(classOf[Echo],  "echo",                    websocket=true,  cookieNeeded=false)
-    Routes.sockJs(classOf[Echo],  "disabled_websocket_echo", websocket=false, cookieNeeded=false)
-    Routes.sockJs(classOf[Echo],  "cookie_needed_echo",      websocket=true,  cookieNeeded=true)
-    Routes.sockJs(classOf[Close], "close",                   websocket=true,  cookieNeeded=false)
-    Server.start()
-  }
+  def main(args: Array[String]) { Server.start() }
 }
