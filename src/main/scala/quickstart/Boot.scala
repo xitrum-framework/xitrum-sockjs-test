@@ -7,13 +7,18 @@ import xitrum.handler.Server
 @SOCKJS("echo")
 class Echo extends SockJsActor {
   def execute(action: Action) {
-    logger.debug("onOpen")
+    logger.debug(getClass.getName + " onOpen")
     context.become {
-      case SockJsText(text) => respondSockJsText(text)
+      case SockJsText(text) =>
+        logger.debug(getClass.getName + " text: " + text)
+        respondSockJsText(text)
     }
   }
 
-  override def postStop() { logger.debug("onClose") }
+  override def postStop() {
+    super.postStop()
+    logger.debug(getClass.getName + " onClose")
+  }
 }
 
 @SOCKJS("disabled_websocket_echo")
@@ -27,11 +32,14 @@ class EchoCookieNeeded extends Echo
 @SOCKJS("close")
 class Close extends SockJsActor {
   def execute(action: Action) {
-    logger.debug("onOpen");
+    logger.debug(getClass.getName + " onOpen");
     respondSockJsClose()
   }
 
-  override def postStop() { logger.debug("onClose") }
+  override def postStop() {
+    super.postStop()
+    logger.debug(getClass.getName + " onClose")
+  }
 }
 
 object Boot {
