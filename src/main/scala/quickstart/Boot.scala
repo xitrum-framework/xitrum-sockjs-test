@@ -16,7 +16,6 @@ class Echo extends SockJsActor {
   }
 
   override def postStop() {
-    super.postStop()
     logger.debug(getClass.getName + " onClose")
   }
 }
@@ -37,7 +36,6 @@ class Close extends SockJsActor {
   }
 
   override def postStop() {
-    super.postStop()
     logger.debug(getClass.getName + " onClose")
   }
 }
