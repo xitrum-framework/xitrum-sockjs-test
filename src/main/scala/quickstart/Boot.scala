@@ -1,11 +1,11 @@
 package quickstart
 
-import xitrum.{Action, Server, SockJsActor, SockJsText}
+import xitrum.{Server, SockJsActor, SockJsText}
 import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
 
 @SOCKJS("echo")
 class Echo extends SockJsActor {
-  def execute(action: Action) {
+  def execute() {
     logger.debug(getClass.getName + " onOpen")
     context.become {
       case SockJsText(text) =>
@@ -29,7 +29,7 @@ class EchoCookieNeeded extends Echo
 
 @SOCKJS("close")
 class Close extends SockJsActor {
-  def execute(action: Action) {
+  def execute() {
     logger.debug(getClass.getName + " onOpen");
     respondSockJsClose()
   }
