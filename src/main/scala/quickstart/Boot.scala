@@ -1,8 +1,7 @@
 package quickstart
 
-import xitrum.{Action, SockJsActor, SockJsText}
+import xitrum.{Action, Server, SockJsActor, SockJsText}
 import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
-import xitrum.handler.Server
 
 @SOCKJS("echo")
 class Echo extends SockJsActor {
