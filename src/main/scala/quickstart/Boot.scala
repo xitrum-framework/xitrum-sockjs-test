@@ -3,8 +3,7 @@ package quickstart
 import xitrum.{Server, SockJsActor, SockJsText}
 import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
 
-@SOCKJS("echo")
-class Echo extends SockJsActor {
+trait Echo extends SockJsActor {
   def execute() {
     logger.debug(getClass.getName + " onOpen")
     context.become {
@@ -18,6 +17,9 @@ class Echo extends SockJsActor {
     logger.debug(getClass.getName + " onClose")
   }
 }
+
+@SOCKJS("echo")
+class NormalEcho extends Echo
 
 @SOCKJS("disabled_websocket_echo")
 @SockJsNoWebSocket
