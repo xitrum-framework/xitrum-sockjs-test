@@ -15,7 +15,7 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 // and it takes several hours to sync from Sonatype to Maven Central
 resolvers += "SonatypeReleases" at "http://oss.sonatype.org/content/repositories/releases/"
 
-libraryDependencies += "tv.cntt" %% "xitrum" % "2.10"
+libraryDependencies += "tv.cntt" %% "xitrum" % "2.11-SNAPSHOT"
 
 // Xitrum uses SLF4J, an implementation of SLF4J is needed
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13"
@@ -53,7 +53,7 @@ scalacOptions += "-P:continuations:enable"
 
 // Template engine for Xitrum --------------------------------------------------
 
-libraryDependencies += "tv.cntt" %% "xitrum-scalate" % "1.2"
+libraryDependencies += "tv.cntt" %% "xitrum-scalate" % "1.3-SNAPSHOT"
 
 // Precompile Scalate
 seq(scalateSettings:_*)

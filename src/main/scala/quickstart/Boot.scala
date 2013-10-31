@@ -5,16 +5,16 @@ import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
 
 trait Echo extends SockJsActor {
   def execute() {
-    logger.debug(getClass.getName + " onOpen")
+    log.debug(getClass.getName + " onOpen")
     context.become {
       case SockJsText(text) =>
-        logger.debug(getClass.getName + " text: " + text)
+        log.debug(getClass.getName + " text: " + text)
         respondSockJsText(text)
     }
   }
 
   override def postStop() {
-    logger.debug(getClass.getName + " onClose")
+    log.debug(getClass.getName + " onClose")
   }
 }
 
@@ -32,12 +32,12 @@ class EchoCookieNeeded extends Echo
 @SOCKJS("close")
 class Close extends SockJsActor {
   def execute() {
-    logger.debug(getClass.getName + " onOpen");
+    log.debug(getClass.getName + " onOpen");
     respondSockJsClose()
   }
 
   override def postStop() {
-    logger.debug(getClass.getName + " onClose")
+    log.debug(getClass.getName + " onClose")
   }
 }
 
