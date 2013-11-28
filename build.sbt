@@ -12,7 +12,7 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 // and it takes several hours to sync from Sonatype to Maven Central
 resolvers += "SonatypeReleases" at "http://oss.sonatype.org/content/repositories/releases/"
 
-libraryDependencies += "tv.cntt" %% "xitrum" % "2.12-SNAPSHOT"
+libraryDependencies += "tv.cntt" %% "xitrum" % "2.13"
 
 // Xitrum uses SLF4J, an implementation of SLF4J is needed
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13"
@@ -41,5 +41,5 @@ unmanagedClasspath in Compile <+= (baseDirectory) map { bd => Attributed.blank(b
 // For "sbt run"
 unmanagedClasspath in Runtime <+= (baseDirectory) map { bd => Attributed.blank(bd / "config") }
 
-// Copy these to target/xitrum when sbt/sbt xitrum-package is run
+// Copy these to target/xitrum when sbt xitrum-package is run
 XitrumPackage.copy("config", "public", "script")
