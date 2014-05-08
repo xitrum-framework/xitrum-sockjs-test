@@ -4,7 +4,7 @@ name         := "xitrum-sockjs-test"
 
 version      := "1.0-SNAPSHOT"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.0"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
@@ -17,7 +17,7 @@ javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 // and it takes several hours to sync from Sonatype to Maven Central
 resolvers += "SonatypeReleases" at "http://oss.sonatype.org/content/repositories/releases/"
 
-libraryDependencies += "tv.cntt" %% "xitrum" % "3.7"
+libraryDependencies += "tv.cntt" %% "xitrum" % "3.11"
 
 // Xitrum uses SLF4J, an implementation of SLF4J is needed
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2"
@@ -29,14 +29,6 @@ autoCompilerPlugins := true
 addCompilerPlugin("tv.cntt" %% "xgettext" % "1.0")
 
 scalacOptions += "-P:xgettext:xitrum.I18n"
-
-// xitrum.imperatively uses Scala continuation, also a compiler plugin ---------
-
-libraryDependencies <+= scalaVersion { sv =>
-  compilerPlugin("org.scala-lang.plugins" % "continuations" % sv)
-}
-
-scalacOptions += "-P:continuations:enable"
 
 // Put config directory in classpath for easier development --------------------
 
