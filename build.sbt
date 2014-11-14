@@ -4,7 +4,7 @@ name         := "xitrum-sockjs-test"
 
 version      := "1.0-SNAPSHOT"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.4"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
@@ -13,13 +13,13 @@ javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 
 //------------------------------------------------------------------------------
 
-libraryDependencies += "tv.cntt" %% "xitrum" % "3.18"
+libraryDependencies += "tv.cntt" %% "xitrum" % "3.19"
 
 // Xitrum uses SLF4J, an implementation of SLF4J is needed
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2"
 
 // For writing condition in logback.xml
-libraryDependencies += "org.codehaus.janino" % "janino" % "2.7.5"
+libraryDependencies += "org.codehaus.janino" % "janino" % "2.7.6"
 
 // Put config directory in classpath for easier development --------------------
 
