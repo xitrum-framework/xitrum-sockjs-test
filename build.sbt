@@ -2,7 +2,7 @@ organization := "tv.cntt"
 name         := "xitrum-sockjs-test"
 version      := "1.0-SNAPSHOT"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.2"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked")
 
@@ -11,7 +11,7 @@ javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
 //------------------------------------------------------------------------------
 
-libraryDependencies += "tv.cntt" %% "xitrum" % "3.28.3"
+libraryDependencies += "tv.cntt" %% "xitrum" % "3.28.4"
 
 // Xitrum uses SLF4J, an implementation of SLF4J is needed
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.2"
