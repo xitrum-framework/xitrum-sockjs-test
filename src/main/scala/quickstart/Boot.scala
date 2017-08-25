@@ -42,5 +42,8 @@ class Close extends SockJsAction {
 }
 
 object Boot {
-  def main(args: Array[String]) { Server.start() }
+  def main(args: Array[String]) {
+    Server.start()
+    Server.stopAtShutdown()
+  }
 }
