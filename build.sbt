@@ -22,10 +22,10 @@ libraryDependencies += "org.codehaus.janino" % "janino" % "3.0.9"
 // Put config directory in classpath for easier development --------------------
 
 // For "sbt console"
-unmanagedClasspath in Compile += Attributed.blank(baseDirectory.value / "config")
+unmanagedClasspath in Compile += baseDirectory.value / "config"
 
-// For "sbt run"
-unmanagedClasspath in Runtime += Attributed.blank(baseDirectory.value / "config")
+// For "sbt fgRun"
+unmanagedClasspath in Runtime += baseDirectory.value / "config"
 
 // Copy these to target/xitrum when sbt xitrum-package is run
 XitrumPackage.copy("config", "public", "script")

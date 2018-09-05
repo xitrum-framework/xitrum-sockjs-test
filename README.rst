@@ -5,4 +5,4 @@ Run `Xitrum <http://xitrum-framework.github.io/>`_ SockJS test server on port 80
 
 ::
 
-  sbt/sbt run
+  sbt/sbt fgRun
