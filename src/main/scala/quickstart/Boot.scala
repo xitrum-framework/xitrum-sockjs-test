@@ -4,7 +4,7 @@ import xitrum.{Server, SockJsAction, SockJsText}
 import xitrum.annotation.{SOCKJS, SockJsCookieNeeded, SockJsNoWebSocket}
 
 trait Echo extends SockJsAction {
-  def execute() {
+  def execute(): Unit = {
     log.debug(getClass.getName + " onOpen")
     context.become {
       case SockJsText(text) =>
@@ -13,7 +13,7 @@ trait Echo extends SockJsAction {
     }
   }
 
-  override def postStop() {
+  override def postStop(): Unit = {
     log.debug(getClass.getName + " onClose")
   }
 }
@@ -31,18 +31,18 @@ class EchoCookieNeeded extends Echo
 
 @SOCKJS("close")
 class Close extends SockJsAction {
-  def execute() {
+  def execute(): Unit = {
     log.debug(getClass.getName + " onOpen");
     respondSockJsClose()
   }
 
-  override def postStop() {
+  override def postStop(): Unit = {
     log.debug(getClass.getName + " onClose")
   }
 }
 
 object Boot {
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     Server.start()
     Server.stopAtShutdown()
   }
